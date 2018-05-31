@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>cntxt</title>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script src="../dist/vis.js"></script>
+  <link href="../dist/vis.css" rel="stylesheet" type="text/css" />
+  <link href="../dist/style.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+    .vis-item .vis-item-overflow {
+      overflow: visible;
+    }
+    .vis-item.vis-background.future {
+      background-color: rgba(0, 155, 0, 0.12);
+    }
+    /* alternating column backgrounds */
+   .vis-time-axis .vis-grid.vis-odd {
+     background: rgba(0, 0, 0, 0.022);
+   }
+
+  </style>
+</head>
+<body>
+  <div id="header">CNTXT</div>
+<div id="visualization"></div>
+
+<script type="text/javascript">
+  var container = document.getElementById('visualization');
+  var now = moment().minutes(0).seconds(0).milliseconds(0);
+  var birth = '1749-11-23';
+  var death = '1800-01-23';
+  var liz = '2004-10-01';
+  var data = [];
+  var items = new vis.DataSet();
+  //
+  var options = {
+    start: birth,
+    end: death,
+    editable: false,
+    groupOrder: 'id',
+    min: new Date(1600, 0, 1),
+    max: new Date(1900, 0, 1),
+    zoomMin: 1000 * 60 * 60 * 24 * 365 * 10,
+    zoomMax: 1000 * 60 * 60 * 24 * 365 * 150,
+    stack: true,
+    horizontalScroll: !true,
+    // zoomKey: 'ctrlKey'
+  };
+  var groups = new vis.DataSet([
+    {id: 0, content: 'Edward Rutledge'},
+    {id: 1, content: 'Location'},
+    {id: 2, content: 'Education'},
+    {id: 3, content: 'Relationships'},
+    {id: 4, content: 'Life Events'},
+    {id: 5, content: 'U.S. Events'},
+    {id: 6, content: 'U.S. Presidents'}
+  ]);
+  var timeline = new vis.Timeline(container, data, options);
+  addItems(items);
+  timeline.setOptions(options);
+  timeline.setGroups(groups);
+  timeline.setItems(items);
+  function addItems(i){
+    i.add({id: 87, content: 'Charleston, SC', start: birth, end: '1768-12-31', group: 1});
+    i.add({id: 88, content: 'London, England', start: '1769-01-01', end: '1772-12-31', group: 1});
+    i.add({id: 89, content: 'Charleston, SC', start: '1773-01-01', end: death, group: 1});
+    i.add({id: 72, content: 'Temple University', start: '1769-01-01', end: '1772-12-31', group: 2});
+    i.add({id: 21, content: 'Mom Died', start: '1792-04-22',type:'point', group: 3});
+    i.add({id: 211, content: 'Henrietta Died', start: '1792-04-22',type:'point', group: 3});
+    i.add({id: 22, content: 'Dad Died', start: '1750-12-25',type:'point', group: 3});
+    i.add({id: 222, content: 'Death', start: death,type:'point', group: 3});
+    i.add({id: 23, content: 'Married Henrietta', start: '1774-03-01', type:'point',group: 3});
+    i.add({id: 233, content: 'Married Mary', start: '1792-10-01', type:'point',group: 3});
+    i.add({id: 11, content: 'Signed Declaration of Independence', start: '1776-08-02',type: 'point', group: 4});
+    i.add({id: 12, content: 'Enlisted in Army', start: '1776-11-01', type:'point', group: 4});
+    i.add({id: 13, content: 'Captured & Imprisoned', start: '1780-01-01', end: '1781-01-01', group: 4});
+    i.add({id: 14, content: 'Grief-induced Stroke', start: '1799-12-14',type: 'point', group: 4});
+    i.add({id: 50, content: 'George Washington Died', start: '1799-12-14',type: 'point', group: 5});
+    i.add({id: 51, content: 'George Washington', start: '1789-04-30',end: '1797-03-04', group: 6});
+    i.add({id: 52, content: 'John Adams', start: '1797-03-05',end: '1801-03-04', group: 6});
+    i.add({id: 61, content: 'Revolutionary War', start: '1775-04-19',end: '1783-09-03', group: 5});
+    i.add({id: 62, content: '13 Colonies Transitioned to States', start: '1787-12-07',end: '1790-05-29', group: 5});
+    i.add({id: 53, content: 'Thomas Jefferson', start: '1801-03-05',end: '1809-03-04', group: 6});
+    i.add({id: 54, content: 'James Madison', start: '1809-03-05',end: '1817-03-04', group: 6});
+    i.add({id: 55, content: 'James Monroe', start: '1817-03-05',end: '1825-03-04', group: 6});
+    i.add({id: 01, content: ' ', start: birth,end: death, type:'background'});
+    i.add({id: 02, content: 'Henrietta', start: '1774-03-01', end: '1792-04-22', type:'background'});
+    i.add({id: 03, content: 'Mary Eveleigh', start: '1792-10-01', end: death, type:'background'});
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Timeline basic demo</title>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script src="../dist/vis.js"></script>
+  <link href="../dist/vis.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+    .vis-item .vis-item-overflow {
+      /*overflow: visible;*/
+    }
+  </style>
+</head>
+<body>
+<div id="visualization"></div>
+
+<script type="text/javascript">
+  var container = document.getElementById('visualization');
+  var now = moment().minutes(0).seconds(0).milliseconds(0)
+  var data = [
+    {id: 'A', content: 'Timeline: Jared Stanley', start: '1977-04-26', end: '2054-01-22', type: 'background', group: 1},
+    {id: 'B', content: 'Married to Liz', start: '2004-10-01', end: now, type: 'background', group: 2},
+    {id: 'C', content: 'Period C', start: '2014-01-27', end: '2014-02-03', type: 'background'}, // no group
+    {id: 'D', content: 'Period D', start: '2014-01-14', end: '2014-01-20', type: 'background', group: 'non-existing'},
+    {id: 1, content: 'Japan', start: '1998-03-25', end:'2000-04-02', group: 1},
+    {id: 2, content: 'New York', start: '2003-08-02',end: '2007-08-11', group: 1},
+    {id: 3, content: 'Utah', start: '2007-08-11',end: '2009-07-01', group: 1},
+    {id: 4, content: 'SF', start: '2009-07-01',end: now, group: 1},
+    {id: 5, content: 'USU', start: '2001-01-01',end: '2003-08-01', group: 1}
+  ]
+  var options = {
+    start: '1977-04-26',
+    end: '2054-04-26',
+    editable: true
+  };
+  var groups = new vis.DataSet([
+    {id: 1, content: 'Group 1'},
+    {id: 2, content: 'Group 2'}
+  ]);
+  var timeline = new vis.Timeline(container, data, options);
+</script>
+</body>
+</html>

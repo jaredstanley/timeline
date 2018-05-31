@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>cntxt</title>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script src="../dist/vis.js"></script>
+  <link href="../dist/vis.css" rel="stylesheet" type="text/css" />
+  <link href="../dist/style.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+    .vis-item .vis-item-overflow {
+      overflow: visible;
+    }
+    .vis-item.vis-background.future {
+      background-color: rgba(0, 155, 0, 0.12);
+    }
+    /* alternating column backgrounds */
+   .vis-time-axis .vis-grid.vis-odd {
+     background: rgba(0, 0, 0, 0.022);
+   }
+
+  </style>
+</head>
+<body>
+  <div id="header">CNTXT</div>
+<div id="visualization"></div>
+
+<script type="text/javascript">
+  var container = document.getElementById('visualization');
+  var now = moment().minutes(0).seconds(0).milliseconds(0);
+  var birth = '1805-12-23';
+  var death = '1844-06-27';
+  var data = [];
+  var items = new vis.DataSet();
+  //
+  var options = {
+    start: birth,
+    end: death,
+    editable: false,
+    groupOrder: 'id',
+    min: new Date(1600, 0, 1),
+    max: new Date(1900, 0, 1),
+    zoomMin: 1000 * 60 * 60 * 24 * 365 * 10,
+    zoomMax: 1000 * 60 * 60 * 24 * 365 * 150,
+    stack: true,
+    horizontalScroll: !true,
+    // zoomKey: 'ctrlKey'
+  };
+  var groups = new vis.DataSet([
+    {id: 0, content: 'Joseph Smith'},
+    {id: 1, content: 'Location'},
+    {id: 3, content: 'Relationships'},
+    {id: 4, content: 'Life Events'},
+    {id: 5, content: 'Church Events'},
+    {id: 6, content: 'Smith\'s Claims'},
+    {id: 7, content: 'U.S. Presidents'}
+  ]);
+  var timeline = new vis.Timeline(container, data, options);
+  addItems(items);
+  timeline.setOptions(options);
+  timeline.setGroups(groups);
+  timeline.setItems(items);
+  function addItems(i){
+    i.add({id: 187, content: 'Sharon, VT', start: birth, end: '1816-12-31', group: 1});
+    i.add({id: 188, content: 'Palmyra, NY', start: '1817-01-01', end: '1830-12-31', group: 1});
+    i.add({id: 189, content: 'Kirtland, OH', start: '1831-01-01', end: '1834-12-31', group: 1});
+    i.add({id: 186, content: 'Independence, MI', start: '1835-01-01', end: '1839-12-31', group: 1});
+    i.add({id: 222, content: 'Killed', start: death,type:'point', group: 3});
+    i.add({id: 233, content: 'Married Emma', start: '1827-01-18', type:'point',group: 3});
+    i.add({id: 13, content: 'On Crutches', start: '1812-01-01', end: '1815-01-01', group: 4});
+    i.add({id: 51, content: 'George Washington', start: '1789-04-30',end: '1797-03-04', group: 7});
+    i.add({id: 52, content: 'John Adams', start: '1897-03-05',end: '1801-03-04', group: 7});
+    i.add({id: 61, content: 'B.O.M. Published', start: '1830-03-26',type:'point', group: 5});
+    i.add({id: 611, content: 'Church Organized', start: '1830-04-06',type:'point', group: 5});
+    i.add({id: 62, content: 'Plural Wives Doctrine', start: '1843-01-01',type:'point', group: 5});
+    i.add({id: 63, content: 'W.o.W. Doctrine', start: '1833-02-27',type:'point', group: 5});
+    i.add({id: 64, content: 'Wife #2: Fanny Alger', start: '1833-01-01',type:'point', group: 5});
+    i.add({id: 65, content: 'Wife #3: Lucinda Pendleton Harris', start: '1838-02-27',type:'point', group: 5});
+    i.add({id: 66, content: 'Wife #4: Louisa Beaman', start: '1841-04-05',type:'point', group: 5});
+    i.add({id: 67, content: 'Wife #5: Zina Huntington', start: '1841-10-27',type:'point', group: 5});
+    i.add({id: 561, content: 'First Vision', start: '1820-06-14',type: 'point', group: 6});
+    i.add({id: 53, content: 'Thomas Jefferson', start: '1801-03-05',end: '1809-03-04', group: 7});
+    i.add({id: 54, content: 'James Madison', start: '1809-03-05',end: '1817-03-04', group: 7});
+    i.add({id: 55, content: 'James Monroe', start: '1817-03-05',end: '1825-03-04', group: 7});
+    i.add({id: 56, content: 'John Quincy Adams', start: '1825-03-05',end: '1829-03-04', group: 7});
+    i.add({id: 57, content: 'Andrew Jackson', start: '1829-03-05',end: '1837-03-04', group: 7});
+    i.add({id: 58, content: 'Martin Van Buren', start: '1837-03-05',end: '1841-03-04', group: 7});
+    i.add({id: 581, content: 'William Henry Harrison', start: '1841-03-05',end: '1841-04-04', group: 7});
+    i.add({id: 582, content: 'John Tyler', start: '1841-04-05',end: '1845-04-04', group: 7});
+    i.add({id: 583, content: 'James K. Polk', start: '1845-04-05',end: '1849-04-04', group: 7});
+    i.add({id: 01, content: ' ', start: birth,end: death, type:'background'});
+    i.add({id: 02, content: 'Emma', start: '1827-01-18', end: death, type:'background'});
+  }
+</script>
+</body>
+</html>
