@@ -1,0 +1,32 @@
+body{
+  margin: 0;
+  background-color: #eeeeee;
+
+}
+#header{
+  height: 40px;
+  background-color: #aaaaaa;
+  padding-left: 10px;
+  padding-top: 16px;
+  font-size: 1.5em;
+  color: white;
+}
+
+.vis-item .vis-item-content{
+  font-size: 0.7em;
+  margin-left: -5px;
+}
+
+.vis-item.vis-range{
+  height: 5px;
+}
+
+.vis-labelset {
+  background-color: #dddddd;
+  font-size: 0.8em;
+
+}
+
+.vis-panel .vis-left{
+  width: 147px;
+}
