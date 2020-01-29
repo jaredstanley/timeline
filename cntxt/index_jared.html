@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>cntxt</title>
+  <title>cntxt - Jared Stanley</title>
   <script src="moment.js"></script>
   <script src="vis.min.js"></script>
   <link href="vis.min.css" rel="stylesheet" type="text/css" />
@@ -54,7 +54,7 @@
     max: new Date(2150, 0, 1),
     zoomMin: 1000 * 60 * 60 * 24 * 365 * 10,
     zoomMax: 1000 * 60 * 60 * 24 * 365 * 150,
-    stack: false,
+    stack: true,
     horizontalScroll: !true,
     // zoomKey: 'ctrlKey'
   };
@@ -74,6 +74,7 @@
   timeline.setItems(items);
   function addItems(i){
     i.add({id: 81, content: 'Japan', start: '1998-03-25', end:'2000-04-02', group: 1});
+    i.add({id: 810, content: 'Provo', start: '2000-04-03', end:'2000-12-31', group: 1});
     i.add({id: 82, content: 'New York', start: '2003-08-02',end: '2007-08-11', group: 1});
     i.add({id: 83, content: 'Salt Lake City', start: '2007-08-11',end: '2009-07-01', group: 1});
     i.add({id: 84, content: 'SF', start: '2009-07-01',end: '2016-03-01', group: 1});
@@ -95,8 +96,10 @@
     i.add({id: 28, content: 'Gabby', start: '1974-06-14', type:'point',group: 2});
     i.add({id: 29, content: 'Josh', start: '1972-04-07', type:'point',group: 2});
     i.add({id: 210, content: 'Sara', start: '1970-09-28', type:'point',group: 2});
+    i.add({id: 2100, content: 'Rachel', start: '1969-05-05', type:'point',group: 2});
     i.add({id: 211, content: 'Met Liz', start: '2003-11-01', type:'point',group: 2});
     i.add({id: 212, content: 'Roger', start: '2001-11-01', type:'point', group: 2});
+    i.add({id: 122, content: 'Built Coffins', start: '1997-05-11',end: '1997-08-01', group: 3});
     i.add({id: 12, content: 'Martian', start: '2013-11-01',end: '2017-12-01', group: 3});
     i.add({id: 13, content: 'MTV', start: '2003-08-01',end: '2005-01-31', group: 3});
     i.add({id: 14, content: 'RED Interactive', start: '2007-08-01',end: '2008-06-31', group: 3});
@@ -104,6 +107,7 @@
     i.add({id: 16, content: 'Sony', start: '2013-04-01',end: '2013-10-31', group: 3});
     i.add({id: 17, content: 'Bought First House', start: '2007-08-01',type: 'point', group: 4});
     i.add({id: 171, content: 'First Alcohol', start: '2010-10-09',type: 'point', group: 4});
+    i.add({id: 172, content: 'First Weed', start: '2012-02-09',type: 'point', group: 4});
     i.add({id: 18, content: 'Bought Bruns', start: '2017-03-01',type: 'point', group: 4});
     i.add({id: 19, content: 'Drivers License', start: '1993-04-26',type: 'point', group: 4});
     i.add({id: 110, content: 'Graduated DHS', start: '1995-06-01',type: 'point', group: 4});
